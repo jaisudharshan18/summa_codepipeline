@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About CI/CD pipelines - Learning guide and concepts" />
+  <title>About | CI/CD Pipeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --card-bg: rgba(22, 27, 46, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.35);
+      --accent: #06b6d4;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .glow-1 {
+      top: 10%;
+      left: 15%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    }
+
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      backdrop-filter: blur(16px);
+      margin-bottom: 2.5rem;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+    }
+    nav a:hover, nav a.active {
+      color: #fff;
+      background: rgba(99, 102, 241, 0.25);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.lead {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .concept-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .concept-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #38bdf8;
+    }
+
+    .concept-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .badge-yaml {
+      display: inline-block;
+      font-family: monospace;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #c7d2fe;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .concepts-grid { grid-template-columns: 1fr; }
+      .container { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-orb glow-1"></div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About CI/CD</a>
+    <a href="status.html">Pipeline Status</a>
+  </nav>
+
+  <main class="container">
+    <h1>About This Pipeline</h1>
+    <p class="lead">
+      Continuous Integration and Continuous Deployment (CI/CD) automates software delivery. Instead of manually uploading files to servers, pipelines run automated tests and deploy on every git commit.
+    </p>
+
+    <div class="concepts-grid">
+      <div class="concept-card">
+        <h3>🔄 Continuous Integration (CI)</h3>
+        <p>
+          Developers merge code frequently into the repository. Automated jobs test the code to catch syntax issues, missing files, or broken links before deployment.
+        </p>
+      </div>
+
+      <div class="concept-card">
+        <h3>🚀 Continuous Deployment (CD)</h3>
+        <p>
+          Once tests in CI pass successfully, the CD phase automatically deploys the updated code to production or hosting environments like GitHub Pages.
+        </p>
+      </div>
+
+      <div class="concept-card">
+        <h3>📝 YAML Configuration</h3>
+        <p>
+          Pipelines are configured in human-readable YAML syntax. Look at <span class="badge-yaml">.github/workflows/ci.yml</span> to see triggers, jobs, and steps.
+        </p>
+      </div>
+
+      <div class="concept-card">
+        <h3>🛡️ Automated Checks</h3>
+        <p>
+          Our pipeline automatically verifies that <span class="badge-yaml">index.html</span> exists and confirms your "Hello" greeting is present before going live.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Multi-Page CI/CD Demo &bull; Created with GitHub Actions
+  </footer>
+</body>
+</html>

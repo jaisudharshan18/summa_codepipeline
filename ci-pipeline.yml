@@ -32,14 +32,16 @@ jobs:
       - name: 📥 Check out repository code
         uses: actions/checkout@v4
 
-      - name: 🔍 Check if index.html exists
+      - name: 🔍 Check if all HTML pages exist
         run: |
-          if [ -f "index.html" ]; then
-            echo "✅ index.html found successfully!"
-          else
-            echo "❌ Error: index.html is missing!"
-            exit 1
-          fi
+          for page in index.html about.html status.html; do
+            if [ -f "$page" ]; then
+              echo "✅ $page found successfully!"
+            else
+              echo "❌ Error: $page is missing!"
+              exit 1
+            fi
+          done
 
       - name: 🧪 Verify 'Hello' Greeting
         run: |
@@ -67,6 +69,8 @@ jobs:
 
       - name: ⚙️ Setup GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: 📦 Upload artifact
         uses: actions/upload-pages-artifact@v3
