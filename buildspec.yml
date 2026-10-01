@@ -1,0 +1,31 @@
+version: 0.2
+
+# AWS CodeBuild Buildspec for Static Website / CI/CD Pipeline
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo "==> Install phase completed."
+
+  pre_build:
+    commands:
+      - echo "==> Validating HTML files and structure..."
+      - test -f index.html && echo "✅ index.html found"
+      - test -f about.html && echo "✅ about.html found"
+      - test -f status.html && echo "✅ status.html found"
+
+  build:
+    commands:
+      - echo "==> Build started on `date`"
+      - echo "==> Running greeting validation test..."
+      - grep -i "Hello" index.html
+      - echo "==> All build checks passed!"
+
+  post_build:
+    commands:
+      - echo "==> Build completed successfully on `date`"
+
+artifacts:
+  files:
+    - '**/*'
